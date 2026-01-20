@@ -1,19 +1,12 @@
 {"1.2.0",
-[{<<"canal">>,
-  {git,"https://github.com/valitydev/canal",
-       {ref,"89faedce3b054bcca7cc31ca64d2ead8a9402305"}},
-  0},
- {<<"epgsql">>,
+[{<<"epgsql">>,
   {git,"https://github.com/epgsql/epgsql.git",
        {ref,"28e9f84c95065a51e92baeb37d2cf1687fc4b9ce"}},
   0},
- {<<"jsone">>,{pkg,<<"jsone">>,<<"1.8.0">>},1},
  {<<"jsx">>,{pkg,<<"jsx">>,<<"3.1.0">>},0}]}.
 [
 {pkg_hash,[
- {<<"jsone">>, <<"347FF1FA700E182E1F9C5012FA6D737B12C854313B9AE6954CA75D3987D6C06D">>},
  {<<"jsx">>, <<"D12516BAA0BB23A59BB35DCCAF02A1BD08243FCBB9EFE24F2D9D056CCFF71268">>}]},
 {pkg_hash_ext,[
- {<<"jsone">>, <<"08560B78624A12E0B5E7EC0271EC8CA38EF51F63D84D84843473E14D9B12618C">>},
  {<<"jsx">>, <<"0C5CC8FDC11B53CC25CF65AC6705AD39E54ECC56D1C22E4ADB8F5A53FB9427F3">>}]}
 ].

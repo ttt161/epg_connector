@@ -22,13 +22,12 @@
 
 ## Features
 
-- 🚀 **High-performance PostgreSQL connection pooling** - Efficient connection management with configurable pool sizes
-- 📡 **PostgreSQL Logical Replication** - Real-time data streaming using PostgreSQL's logical replication protocol
-- 🔄 **pgoutput Protocol Support** - Built-in decoder for PostgreSQL's native logical replication output plugin
-- 📊 **Comprehensive Data Type Support** - Handles all PostgreSQL data types including arrays, JSON, timestamps, and custom types
-- ⚙️ **Highly Configurable** - Flexible configuration for pools, databases, and replication settings
-- 🔌 **Easy Integration** - Simple API for existing Erlang/OTP applications
-- 🛡️ **Robust Error Handling** - Comprehensive error handling and logging for production environments
+- **High-performance PostgreSQL connection pooling** - Efficient connection management with configurable pool sizes
+- **PostgreSQL Logical Replication** - Real-time data streaming using PostgreSQL's logical replication protocol
+- **pgoutput Protocol Support** - Built-in decoder for PostgreSQL's native logical replication output plugin
+- **Comprehensive Data Type Support** - Handles many PostgreSQL data types including arrays, JSON, timestamps, and custom types
+- **Highly Configurable** - Flexible configuration for pools, databases, and replication settings
+- **Easy Integration** - Simple API for existing Erlang/OTP applications
 
 ## Prerequisites
 
@@ -112,9 +111,9 @@ Configure your databases and connection pools in your `sys.config` file:
    -export([get_user/1, create_user/2]).
 
    get_user(UserId) ->
-       epg_pool:with(readonly_pool, fun(Connection) ->
+       epg_pool:transaction(readonly_pool, fun(Connection) ->
            Query = "SELECT id, name, email FROM users WHERE id = $1",
-           case epgsql:equery(Connection, Query, [UserId]) of
+           case epg_pool:query(Connection, Query, [UserId]) of
                {ok, _Columns, [{Id, Name, Email}]} ->
                    {ok, #{id => Id, name => Name, email => Email}};
                {ok, _Columns, []} ->
@@ -171,7 +170,7 @@ Configure your databases and connection pools in your `sys.config` file:
    },
 
    epg_wal_reader:subscribe(
-       user_replication_handler,  % Callback module
+       {user_replication_handler, Pid},  % Callback module
        DbOpts,                    % Database connection options
        "myapp_slot",              % Replication slot name
        ["user_changes"],          % Publications to subscribe to
@@ -318,6 +317,7 @@ transform_change({TableName, Operation, Data, _OldData}) ->
 ```bash
 $ git clone https://github.com/your-repo/epg_connector.git
 $ cd epg_connector
+$ make wdeps-shell # docker compose up
 $ rebar3 get-deps
 $ rebar3 compile
 $ rebar3 ct  # Run tests
