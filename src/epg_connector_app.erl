@@ -66,7 +66,6 @@ wrap_secret(#{password := Pass} = DbOpts) when is_list(Pass) ->
 wrap_secret(DbOpts) ->
     DbOpts.
 
-
 wrap_secrets(Databases) ->
     DbConfig = update_db_config(Databases),
     ok = application:set_env(epg_connector, databases, DbConfig),

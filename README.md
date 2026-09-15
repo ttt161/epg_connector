@@ -315,7 +315,7 @@ transform_change({TableName, Operation, Data, _OldData}) ->
 ### Development Setup
 
 ```bash
-$ git clone https://github.com/your-repo/epg_connector.git
+$ git clone https://github.com/ttt161/epg_connector.git
 $ cd epg_connector
 $ make wdeps-shell # docker compose up
 $ rebar3 get-deps

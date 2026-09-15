@@ -1,13 +1,14 @@
 {application, epg_connector, [
     {description, "Postgres connection pooling and logical replication support"},
-    {vsn, "1.0.1"},
+    {vsn, "1.0.2"},
     {registered, []},
     {mod, {epg_connector_app, []}},
     {applications, [
         kernel,
         stdlib,
         epgsql,
-        jsx
+        jsx,
+        epg_wal_reader
     ]},
     {env, []},
     {modules, []},
