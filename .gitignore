@@ -16,3 +16,4 @@ rebar3.crashdump
 tags
 .image.dev
 bin
+mise.toml
